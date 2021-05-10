@@ -24,7 +24,7 @@ import { JwtAuthGuard } from '../../../shared/guards/auth.guatd';
 import { TipoNotificacaoMq } from '../enums/tipo-notificacao-mq.enum';
 
 @ApiTags('Segurança')
-@Controller('v1/users')
+@Controller('users')
 export class UserController {
 
     constructor(private authService: AuthService, private userService: UserService) {
