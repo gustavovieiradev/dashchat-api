@@ -7,6 +7,7 @@ import { TabelaMongodb } from './shared/enums/tabela-mongodb.enum';
 import { UsuarioSchema } from './modules/autenticacao/schemas/usuario.schema';
 import {JwtModule} from '@nestjs/jwt';
 import { ClienteModule } from './modules/cliente/cliente.module';
+import { ProjetoModule } from './modules/projeto/projeto.module';
 import * as configJwt from './shared/config-jwt';
 
 @Module({
@@ -30,6 +31,7 @@ import * as configJwt from './shared/config-jwt';
   }),
     AutenticacaoModule,
     ClienteModule,
+    ProjetoModule,
   ],
   controllers: [
   ],
