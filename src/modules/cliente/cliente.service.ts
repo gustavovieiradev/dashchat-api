@@ -20,7 +20,7 @@ export class ClienteService {
     return await this.model.findOne({ email }).exec();
   }
 
-  async findById(id): Promise<ICliente> {
+  async findById(id: string): Promise<ICliente> {
     return await this.model.findById(id).exec();
   }
 

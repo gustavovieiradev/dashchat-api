@@ -29,7 +29,7 @@ export class ClienteController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.clienteService.findById(+id);
+    return this.clienteService.findById(id);
   }
 
   @Patch(':id')
