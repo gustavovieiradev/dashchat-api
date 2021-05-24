@@ -1,17 +1,19 @@
 import * as mongoose from 'mongoose';
-import {Document, Model, Schema} from 'mongoose';
+import { Document, Model, Schema } from 'mongoose';
 import { TabelaMongodb } from '../../../shared/enums/tabela-mongodb.enum';
 
 export interface IUsuario extends Document {
   name: string;
   email: string;
-  password: string;
+  password?: string;
   roles: string[];
   google: string;
   facebook: string;
   active: boolean;
-  confirmation: boolean
-  dateConfirmation: Date
+  confirmation: boolean;
+  dateConfirmation: Date;
+  cliente: string;
+  projeto: string;
 }
 
 export const UsuarioSchema: Schema = new Schema({
@@ -37,7 +39,7 @@ export const UsuarioSchema: Schema = new Schema({
     type: [String],
     required: true,
     enum: ['usuario', 'admin'],
-    default: ['usuario']
+    default: ['usuario'],
   },
   google: {
     type: String,
@@ -59,10 +61,21 @@ export const UsuarioSchema: Schema = new Schema({
     required: true,
     default: false,
   },
+  cliente: {
+    type: Schema.Types.ObjectId,
+    ref: 'clientes',
+  },
+  projeto: {
+    type: Schema.Types.ObjectId,
+    ref: 'projetos',
+  },
   dateConfirmation: {
     type: Date,
-    required: false
+    required: false,
   },
 });
-const Usuario: Model<IUsuario> = mongoose.model<IUsuario>(TabelaMongodb.Usuario, UsuarioSchema);
+const Usuario: Model<IUsuario> = mongoose.model<IUsuario>(
+  TabelaMongodb.Usuario,
+  UsuarioSchema,
+);
 export default Usuario;
