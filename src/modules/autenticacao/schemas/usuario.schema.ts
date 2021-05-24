@@ -12,6 +12,7 @@ export interface IUsuario extends Document {
   active: boolean;
   confirmation: boolean;
   dateConfirmation: Date;
+  cliente: string;
 }
 
 export const UsuarioSchema: Schema = new Schema({
@@ -58,6 +59,10 @@ export const UsuarioSchema: Schema = new Schema({
     type: Boolean,
     required: true,
     default: false,
+  },
+  cliente: {
+    type: Schema.Types.ObjectId,
+    ref: 'clientes',
   },
   dateConfirmation: {
     type: Date,
