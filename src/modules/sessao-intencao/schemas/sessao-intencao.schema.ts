@@ -7,10 +7,19 @@ export interface ISessaoIntencao extends Document {
 }
 
 export const SessaoIntencaoSchema: Schema = new Schema({
-  nome: {
+  interacao: {
     type: String,
     required: true,
     trim: true,
+  },
+  intent: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  sessao: {
+    type: Schema.Types.ObjectId,
+    ref: 'sessao',
   },
   dateConfirmation: {
     type: Date,

@@ -7,12 +7,30 @@ export interface IHistorico extends Document {
 }
 
 export const HistoricoSchema: Schema = new Schema({
-  nome: {
+  intent: {
     type: String,
     required: true,
     trim: true,
   },
-  dateConfirmation: {
+  tipo: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  autor: {
+    type: Schema.Types.ObjectId,
+    ref: 'autor',
+  },
+  conversa: {
+    type: Schema.Types.ObjectId,
+    ref: 'conversa',
+  },
+  input: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  startTime: {
     type: Date,
     required: false,
   },

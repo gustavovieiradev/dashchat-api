@@ -12,6 +12,16 @@ export const AutorSchema: Schema = new Schema({
     required: true,
     trim: true,
   },
+  ref: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  guest: {
+    type: String,
+    required: false,
+    trim: true,
+  },
   dateConfirmation: {
     type: Date,
     required: false,

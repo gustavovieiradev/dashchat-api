@@ -7,9 +7,28 @@ export interface ISessao extends Document {
 }
 
 export const SessaoSchema: Schema = new Schema({
-  nome: {
-    type: String,
+  bounce: {
+    type: Boolean,
     required: true,
+    trim: true,
+  },
+  autor: {
+    type: Schema.Types.ObjectId,
+    ref: 'autor',
+  },
+  ultimaInteracao: {
+    type: Date,
+    required: false,
+    trim: true,
+  },
+  finalTime: {
+    type: Date,
+    required: false,
+    trim: true,
+  },
+  startTime: {
+    type: Date,
+    required: false,
     trim: true,
   },
   dateConfirmation: {

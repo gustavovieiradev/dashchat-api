@@ -7,10 +7,19 @@ export interface ISessaoEntrada extends Document {
 }
 
 export const SessaoEntradaSchema: Schema = new Schema({
-  nome: {
+  interacao: {
     type: String,
     required: true,
     trim: true,
+  },
+  input: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  sessao: {
+    type: Schema.Types.ObjectId,
+    ref: 'sessao',
   },
   dateConfirmation: {
     type: Date,

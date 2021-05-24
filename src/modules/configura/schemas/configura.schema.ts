@@ -7,9 +7,34 @@ export interface IConfigura extends Document {
 }
 
 export const ConfiguraSchema: Schema = new Schema({
-  nome: {
+  thema: {
     type: String,
-    required: true,
+    required: false,
+    trim: true,
+  },
+  titulo: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  welcome: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  notFound: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  token: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  iframe: {
+    type: String,
+    required: false,
     trim: true,
   },
   dateConfirmation: {

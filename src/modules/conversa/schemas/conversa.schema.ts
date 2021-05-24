@@ -7,9 +7,86 @@ export interface IConversa extends Document {
 }
 
 export const ConversaSchema: Schema = new Schema({
-  nome: {
+  intent: {
     type: String,
     required: true,
+    trim: true,
+  },
+  mensagem: {
+    type: [String],
+    required: false,
+    trim: true,
+  },
+  template: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  nextIntent: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  hookIntent: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  quickReplies: {
+    type: [{
+      text:String,
+      next_intent: String,
+      url_external: String
+    }],
+    required: false,
+    trim: true,
+  },
+  card: {
+    type: {
+    text: String,
+    subtitle: String,
+    img: String,
+      buttons:[
+        {
+          text: String,
+          next_intent: String,
+          url_external: String
+        }
+      ]
+    },
+    required: false,
+    trim: true,
+  },
+  button: {
+    type: {
+      text: String,
+      next_intent: String,
+      url_external: String
+    },
+    required: false,
+    trim: true,
+  },
+  carousel: {
+    type: [
+      {
+        text: String,
+        subtitle: String,
+        img: String,
+        buttons:[
+          {
+            text: String,
+            next_intent: String,
+            url_external: String
+          }
+        ]
+      }
+    ],
+    required: false,
+    trim: true,
+  },
+  utterances: {
+    type: [String],
+    required: false,
     trim: true,
   },
   dateConfirmation: {
