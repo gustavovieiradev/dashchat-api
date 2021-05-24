@@ -8,6 +8,13 @@ import { UsuarioSchema } from './modules/autenticacao/schemas/usuario.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { ClienteModule } from './modules/cliente/cliente.module';
 import { ProjetoModule } from './modules/projeto/projeto.module';
+import { AutorModule } from './modules/autor/autor.module';
+import { SessaoModule } from './modules/sessao/sessao.module';
+import { HistoricoModule } from './modules/historico/historico.module';
+import { SessaoIntencaoModule } from './modules/sessao-intencao/sessao-intencao.module';
+import { SessaoEntradaModule } from './modules/sessao-entrada/sessao-entrada.module';
+import { ConfiguraModule } from './modules/configura/configura.module';
+import { ConversaModule } from './modules/conversa/conversa.module';
 import * as configJwt from './shared/config-jwt';
 
 @Module({
@@ -39,6 +46,14 @@ import * as configJwt from './shared/config-jwt';
     AutenticacaoModule,
     ClienteModule,
     ProjetoModule,
+    ConfigModule,
+    AutorModule,
+    SessaoModule,
+    HistoricoModule,
+    SessaoIntencaoModule,
+    SessaoEntradaModule,
+    ConfiguraModule,
+    ConversaModule,
   ],
   controllers: [],
   providers: [],
