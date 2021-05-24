@@ -4,6 +4,7 @@ import { TabelaMongodb } from '../../../shared/enums/tabela-mongodb.enum';
 
 export interface IProjeto extends Document {
   nome: string;
+  cliente: string;
 }
 
 export const ProjetoSchema: Schema = new Schema({
