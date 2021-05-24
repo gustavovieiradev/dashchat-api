@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import {Document, Model, Schema} from 'mongoose';
+import { Document, Model, Schema } from 'mongoose';
 import { TabelaMongodb } from '../../../shared/enums/tabela-mongodb.enum';
 
 export interface IProjeto extends Document {
@@ -12,10 +12,19 @@ export const ProjetoSchema: Schema = new Schema({
     required: true,
     trim: true,
   },
+  cliente: {
+    type: Schema.Types.ObjectId,
+    ref: 'clientes',
+  },
   dateConfirmation: {
     type: Date,
-    required: false
+    required: false,
   },
 });
-const Projeto: Model<IProjeto> = mongoose.model<IProjeto>(TabelaMongodb.Projeto, ProjetoSchema);
+
+const Projeto: Model<IProjeto> = mongoose.model<IProjeto>(
+  TabelaMongodb.Projeto,
+  ProjetoSchema,
+);
+
 export default Projeto;

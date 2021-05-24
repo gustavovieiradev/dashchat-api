@@ -29,7 +29,7 @@ export class ProjetoService {
   }
 
   async findAll() {
-    return await this.model.findOne({}).exec();
+    return await this.model.find({}).exec();
   }
 
   remove(id: number) {

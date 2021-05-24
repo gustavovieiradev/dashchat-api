@@ -13,7 +13,7 @@ import { BancoMongodb } from 'src/shared/enums/banco-mongodb.enum';
         {
           name: TabelaMongodb.Projeto,
           schema: ProjetoSchema,
-          collection: TabelaMongodb.Cliente,
+          collection: TabelaMongodb.Projeto,
         },
       ],
       BancoMongodb.DASHCHAT,
