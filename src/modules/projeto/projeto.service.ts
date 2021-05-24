@@ -36,6 +36,10 @@ export class ProjetoService {
     return await this.model.find({}).populate('cliente').exec();
   }
 
+  async findByCliente(clientId: string) {
+    return await this.model.find({ cliente: clientId }).exec();
+  }
+
   remove(id: string) {
     return `This action removes a #${id} Projeto`;
   }

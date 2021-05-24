@@ -27,6 +27,11 @@ export class ProjetoController {
     return this.projetoService.findAll();
   }
 
+  @Get('/cliente/:clientId')
+  findByCliente(@Param('clientId') clientId: string) {
+    return this.projetoService.findByCliente(clientId);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.projetoService.findOne(id);
