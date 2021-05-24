@@ -5,7 +5,7 @@ import { TabelaMongodb } from '../../../shared/enums/tabela-mongodb.enum';
 export interface IUsuario extends Document {
   name: string;
   email: string;
-  password: string;
+  password?: string;
   roles: string[];
   google: string;
   facebook: string;
@@ -13,6 +13,7 @@ export interface IUsuario extends Document {
   confirmation: boolean;
   dateConfirmation: Date;
   cliente: string;
+  projeto: string;
 }
 
 export const UsuarioSchema: Schema = new Schema({
@@ -63,6 +64,10 @@ export const UsuarioSchema: Schema = new Schema({
   cliente: {
     type: Schema.Types.ObjectId,
     ref: 'clientes',
+  },
+  projeto: {
+    type: Schema.Types.ObjectId,
+    ref: 'projetos',
   },
   dateConfirmation: {
     type: Date,

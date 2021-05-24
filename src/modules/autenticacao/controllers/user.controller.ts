@@ -198,6 +198,11 @@ export class UserController {
     return new ResultadoDto(null, true, token, null);
   }
 
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
   // Confirmar Cadastro
   @Get('registration-confirmation/:id')
   @ApiOperation({ summary: 'Confirmar cadastro' })
