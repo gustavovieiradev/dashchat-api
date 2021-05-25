@@ -3,15 +3,10 @@ import { Document, Model, Schema } from 'mongoose';
 import { TabelaMongodb } from '../../../shared/enums/tabela-mongodb.enum';
 
 export interface IAutor extends Document {
-  nome: string;
+  ref: string;
 }
 
 export const AutorSchema: Schema = new Schema({
-  nome: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   ref: {
     type: String,
     required: false,

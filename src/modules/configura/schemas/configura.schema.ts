@@ -32,6 +32,10 @@ export const ConfiguraSchema: Schema = new Schema({
     required: false,
     trim: true,
   },
+  projeto: {
+    type: Schema.Types.ObjectId,
+    ref: 'projeto',
+  },
   iframe: {
     type: String,
     required: false,

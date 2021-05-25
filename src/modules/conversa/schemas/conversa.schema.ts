@@ -24,13 +24,17 @@ export const ConversaSchema: Schema = new Schema({
   },
   nextIntent: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   hookIntent: {
     type: String,
     required: false,
     trim: true,
+  },
+  projeto: {
+    type: Schema.Types.ObjectId,
+    ref: 'projeto',
   },
   quickReplies: {
     type: [{

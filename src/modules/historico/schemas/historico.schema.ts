@@ -9,12 +9,17 @@ export interface IHistorico extends Document {
 export const HistoricoSchema: Schema = new Schema({
   intent: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   tipo: {
     type: String,
     required: true,
+    trim: true,
+  },
+  nextIntent: {
+    type: String,
+    required: false,
     trim: true,
   },
   autor: {
@@ -24,10 +29,11 @@ export const HistoricoSchema: Schema = new Schema({
   conversa: {
     type: Schema.Types.ObjectId,
     ref: 'conversa',
+    required: false,
   },
   input: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   startTime: {

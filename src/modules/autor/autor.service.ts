@@ -27,7 +27,6 @@ export class AutorService {
 
   async update(id: string, data: any): Promise<IAutor> {
     const projeto = await this.model.findById(id).exec();
-    projeto.nome = data.nome ? data.nome : projeto.nome;
     await projeto.save();
     return projeto;
   }

@@ -20,6 +20,11 @@ export class ConversaController {
     return this.conversaService.findAll();
   }
 
+  @Post('talk')
+  conversa(@Body() talk: CreateConversaDto) {
+    return this.conversaService.conversa(talk);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.conversaService.findOne(id);
