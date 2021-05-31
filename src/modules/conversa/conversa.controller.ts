@@ -1,9 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ConversaService } from './conversa.service';
 import { CreateConversaDto } from './dto/create-conversa.dto';
 import { UpdateConversaDto } from './dto/update-conversa.dto';
-
 
 @ApiTags('Conversa')
 @Controller('conversa')
@@ -31,7 +38,10 @@ export class ConversaController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateConversaDto: UpdateConversaDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateConversaDto: UpdateConversaDto,
+  ) {
     return this.conversaService.update(id, updateConversaDto);
   }
 
