@@ -37,26 +37,28 @@ export const ConversaSchema: Schema = new Schema({
     ref: 'projeto',
   },
   quickReplies: {
-    type: [{
-      text:String,
-      next_intent: String,
-      url_external: String
-    }],
+    type: [
+      {
+        text: String,
+        next_intent: String,
+        url_external: String,
+      },
+    ],
     required: false,
     trim: true,
   },
   card: {
     type: {
-    text: String,
-    subtitle: String,
-    img: String,
-      buttons:[
+      text: String,
+      subtitle: String,
+      img: String,
+      buttons: [
         {
           text: String,
           next_intent: String,
-          url_external: String
-        }
-      ]
+          url_external: String,
+        },
+      ],
     },
     required: false,
     trim: true,
@@ -65,7 +67,7 @@ export const ConversaSchema: Schema = new Schema({
     type: {
       text: String,
       next_intent: String,
-      url_external: String
+      url_external: String,
     },
     required: false,
     trim: true,
@@ -76,14 +78,14 @@ export const ConversaSchema: Schema = new Schema({
         text: String,
         subtitle: String,
         img: String,
-        buttons:[
+        buttons: [
           {
             text: String,
             next_intent: String,
-            url_external: String
-          }
-        ]
-      }
+            url_external: String,
+          },
+        ],
+      },
     ],
     required: false,
     trim: true,
