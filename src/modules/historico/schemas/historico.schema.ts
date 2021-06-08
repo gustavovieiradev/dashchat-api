@@ -40,6 +40,10 @@ export const HistoricoSchema: Schema = new Schema({
     type: Date,
     required: false,
   },
+  wp_return: {
+    type: Object,
+    required: false,
+  },
 });
 const Historico: Model<IHistorico> = mongoose.model<IHistorico>(
   TabelaMongodb.Historico,

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BancoMongodb } from './shared/enums/banco-mongodb.enum';
@@ -54,6 +54,7 @@ import * as configJwt from './shared/config-jwt';
     SessaoEntradaModule,
     ConfiguraModule,
     ConversaModule,
+    HttpModule,
   ],
   controllers: [],
   providers: [],

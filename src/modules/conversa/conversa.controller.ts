@@ -32,6 +32,11 @@ export class ConversaController {
     return this.conversaService.conversa(talk);
   }
 
+  @Post(':projeto/webhook')
+  webhook(@Param('projeto') projeto: string, @Body() talk: any) {
+    return this.conversaService.webhook(projeto, talk);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.conversaService.findOne(id);

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpService, Injectable } from '@nestjs/common';
 import { CreateConversaDto } from './dto/create-conversa.dto';
 import { UpdateConversaDto } from './dto/update-conversa.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -16,6 +16,7 @@ export class ConversaService {
     @InjectModel(TabelaMongodb.Autor) private readonly autorModel: Model<IAutor>,
     @InjectModel(TabelaMongodb.Sessao) private readonly sessaoModel: Model<ISessao>,
     @InjectModel(TabelaMongodb.Historico) private readonly historicoModel: Model<IHistorico>,
+    private httpService: HttpService
   ) {}
 
   async create(createProjetoDto: CreateConversaDto) {
@@ -31,6 +32,36 @@ export class ConversaService {
     let session = await this.setSession(body, actor);
     let result = await this.getIntent(body, actor, session);
     return result;
+  }
+
+  async webhook(projeto, body) {
+    
+    console.log(projeto, body.message.contents)
+
+    let intent = await this.conversa({
+      nextIntent: 'TALK',
+      ref: body.message.to,
+      input: body.message.contents[0].text,
+      projeto: projeto,
+      wp_return: body
+    })
+    console.log(intent)
+    let msg = ''
+    if (intent) {
+      msg = intent.mensagem.join('\r\n');
+    } else {
+      msg = 'Não entendi o que você quis dizer 🤭';
+    }
+
+    let resq = await this.httpService.post('',
+     {"from":"brick-steed","to":body.message.to,"contents":[{"type":"text","text": msg}]},
+     {
+       headers: {
+         'X-API-TOKEN': 't5LD5KxUCDfXdfS6vipmaGhVZBObPwUMoAI-'
+       }
+     }
+     ).toPromise();
+     console.log('resq--', resq)
   }
 
   async findByEmail(email: string): Promise<IConversa> {
@@ -68,6 +99,7 @@ export class ConversaService {
       input: body.input,
       autor: actor,
       tipo: 'sending',
+      wp_return: body.wp_return
     }).save();
     let filter:any = {
       intent:''
@@ -87,14 +119,16 @@ export class ConversaService {
       filter.intent = 'NONE';
       conversation = await this.model.findOne(filter, score).sort(sort)
     }
-    await new this.historicoModel({
-      intent: body.input,
-      nextIntent: conversation.intent,
-      input: body.input,
-      autor: actor,
-      tipo: 'recived',
-      conversa: conversation
-    }).save();
+      if (conversation) {
+      await new this.historicoModel({
+        intent: body.input,
+        nextIntent: conversation.intent,
+        input: body.input,
+        autor: actor,
+        tipo: 'recived',
+        conversa: conversation
+      }).save();
+    }
     return conversation;
   }
 

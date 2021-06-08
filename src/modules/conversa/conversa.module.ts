@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { ConversaService } from './conversa.service';
 import { ConversaController } from './conversa.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -36,6 +36,7 @@ import { HistoricoSchema } from '../historico/schemas/historico.schema';
       ],
       BancoMongodb.DASHCHAT,
     ),
+    HttpModule
   ],
   controllers: [ConversaController],
   providers: [ConversaService]
