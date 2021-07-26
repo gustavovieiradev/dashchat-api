@@ -1,2 +1,2 @@
-export const JWT_SECRETO = 'YmludmVzdG11aXRvbG91Y28=';
+export const JWT_SECRETO = 'Zm9kYXNlb211bmRv';
 export const EXP_JWT = 3600;

@@ -34,19 +34,6 @@ import { JwtStrategy } from '../../shared/strategys/jwt.strategy';
         expiresIn: configJwt.EXP_JWT,
       },
     }),
-    /*ClientsModule.register([
-            {
-                name: 'NOTIFICACAO_SERVICE',
-                transport: Transport.RMQ,
-                options: {
-                    urls: [process.env.RABBITMQ_ZELLO],
-                    queue: 'usuario-notificacao-healthtech',
-                    queueOptions: {
-                        durable: true
-                    },
-                },
-            }
-        ]),*/
   ],
   controllers: [UserController],
   providers: [AuthService, UserService, JwtStrategy],

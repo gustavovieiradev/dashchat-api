@@ -14,4 +14,8 @@ export class TalkConversaDto {
   @IsString()
   public nextIntent: string;
 
+  @ApiProperty()
+  @IsString()
+  public projeto: string;
+
 }

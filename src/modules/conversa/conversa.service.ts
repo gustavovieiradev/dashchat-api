@@ -98,7 +98,8 @@ export class ConversaService {
       wp_return: body.wp_return
     }).save();
     let filter:any = {
-      intent:''
+      intent:'',
+      projeto: body.projeto
     }
     var sort = {}
     var score = {}

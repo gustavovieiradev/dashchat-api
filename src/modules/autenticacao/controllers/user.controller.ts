@@ -68,21 +68,16 @@ export class UserController {
       model.email,
       model.password,
     );
-    // Caso não encontre o usuário
     if (!user)
       throw new HttpException(
         new ResultadoDto('Usuário ou senha inválidos', false, null, null),
         HttpStatus.UNAUTHORIZED,
       );
-
-    // Caso o usuário esteja inativo
     if (!user.active)
       throw new HttpException(
         new ResultadoDto('Usuário inativo', false, null, null),
         HttpStatus.UNAUTHORIZED,
       );
-
-    // Caso o usuário esteja sem confirmação de cadastro
     if (!user.confirmation)
       throw new HttpException(
         new ResultadoDto(
@@ -115,7 +110,6 @@ export class UserController {
         passwordGuid,
       );
       await this.userService.update(model.email, { password: newPassword });
-      //await this.rmqService.sendUserNotification(TipoNotificacaoMq.ResetarSenha, model, ['EMAIL']);
       return new ResultadoDto(
         'Uma nova senha foi enviada para seu E-mail',
         true,
@@ -151,7 +145,6 @@ export class UserController {
         request.user.email,
         model.password,
       );
-      // Caso não encontre o usuário
       if (!user)
         throw new HttpException(
           new ResultadoDto('Senha atual inválida', false, null, null),
@@ -162,7 +155,6 @@ export class UserController {
         await this.userService.update(request.user.email, {
           password: newPassword,
         });
-        //await this.rmqService.sendUserNotification(request.user.produto, TipoNotificacaoMq.TrocarSenha, request.user);
         return new ResultadoDto(
           'Sua senha foi alterada com sucesso!',
           true,
@@ -183,7 +175,6 @@ export class UserController {
     }
   }
 
-  // Refresh Token
   @Post('refresh')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(new RoleInterceptor(['usuario']))
@@ -203,7 +194,6 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  // Confirmar Cadastro
   @Get('registration-confirmation/:id')
   @ApiOperation({ summary: 'Confirmar cadastro' })
   async registrationConfirmation(@Param() params): Promise<any> {
@@ -233,7 +223,6 @@ export class UserController {
           confirmation: true,
           dateConfirmation: user.dateConfirmation,
         });
-        //await this.rmqService.sendUserNotification(TipoNotificacaoMq.ConfimacaoCadastro, user);
         return new ResultadoDto(
           'Cadastro do usuário confirmado com sucesso!',
           true,
@@ -254,7 +243,6 @@ export class UserController {
     }
   }
 
-  // Desativar usuário
   @Get('deactivate/:id')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(new RoleInterceptor(['administrador']))
@@ -297,7 +285,6 @@ export class UserController {
     }
   }
 
-  // Ativar usuário
   @Get('activate/:id')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(new RoleInterceptor(['administrador']))
@@ -335,7 +322,6 @@ export class UserController {
     }
   }
 
-  // Pegar usuário por id
   @Get('select/:id')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(new RoleInterceptor(['administrador']))
@@ -372,7 +358,6 @@ export class UserController {
     }
   }
 
-  // Pegar usuário por id
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(new RoleInterceptor(['usuario']))
