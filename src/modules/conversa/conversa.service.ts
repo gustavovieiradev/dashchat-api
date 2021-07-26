@@ -25,6 +25,7 @@ export class ConversaService {
   }
 
   async conversa(body) {
+    console.log(body)
     let actor = await this.autorModel.findOne({ref: body.ref});
     if (!actor) {
       actor = await this.setRef(body);
@@ -35,9 +36,6 @@ export class ConversaService {
   }
 
   async webhook(projeto, body) {
-    
-    console.log(projeto, body.message.contents)
-
     let intent = await this.conversa({
       nextIntent: 'TALK',
       ref: body.message.to,
@@ -45,7 +43,6 @@ export class ConversaService {
       projeto: projeto,
       wp_return: body
     })
-    console.log(intent)
     let msg = ''
     if (intent) {
       msg = intent.mensagem.join('\r\n');
@@ -61,7 +58,6 @@ export class ConversaService {
        }
      }
      ).toPromise();
-     console.log('resq--', resq)
   }
 
   async findByEmail(email: string): Promise<IConversa> {

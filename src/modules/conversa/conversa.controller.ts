@@ -10,6 +10,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { ConversaService } from './conversa.service';
 import { CreateConversaDto } from './dto/create-conversa.dto';
+import { TalkConversaDto } from './dto/talk-conversa.dto';
 import { UpdateConversaDto } from './dto/update-conversa.dto';
 
 @ApiTags('Conversa')
@@ -28,11 +29,11 @@ export class ConversaController {
   }
 
   @Post('talk')
-  conversa(@Body() talk: CreateConversaDto) {
+  conversa(@Body() talk: TalkConversaDto) {
     return this.conversaService.conversa(talk);
   }
 
-  @Post(':projeto/webhook')
+  @Post('webhook')
   webhook(@Param('projeto') projeto: string, @Body() talk: any) {
     return this.conversaService.webhook(projeto, talk);
   }

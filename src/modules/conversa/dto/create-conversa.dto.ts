@@ -3,12 +3,10 @@ import { IsArray, IsString } from 'class-validator';
 
 export class CreateConversaDto {
   @ApiProperty()
-  @IsString()
-  public mensagem: string[];
+  public mensagem: [string];
 
   @ApiProperty()
-  @IsString()
-  public utterances: string[];
+  public utterances: [string];
 
   @ApiProperty()
   @IsString()
